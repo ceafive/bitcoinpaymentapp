@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "439118616268",
+    "project_id": "buybitcoinapp",
+    "storage_bucket": "buybitcoinapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439118616268:android:e8d7b8b1b5fc4d1bd19469",
+        "android_client_info": {
+          "package_name": "com.adroit.buybitcoinapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439118616268-b6a1b79ju54bkqii7eq1fm8mvp6dehvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8g0qzWp4DWM1GzXxD6-Eq0XPvmc6qdJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439118616268-b6a1b79ju54bkqii7eq1fm8mvp6dehvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
