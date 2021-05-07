@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import { AuthCheck, StorageImage, useFirestoreDocData, useUser, useAuth, useFirestore } from "reactfire";
 import { style } from "../constants/styles";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { HomeScreen } from "../screens";
+import { useFetchUserDetails } from "../hooks";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,10 @@ const ProfileScreen = () => {
 };
 
 const MainNav = () => {
+  const { data: user } = useUser();
+
+  const { userDetails, error, status } = useFetchUserDetails(user.uid);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -26,9 +31,7 @@ const MainNav = () => {
           let iconName;
 
           if (route.name === "Home") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
+            iconName = focused ? "ios-information-circle" : "ios-information-circle-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "ios-list" : "ios-list";
           }
@@ -38,7 +41,7 @@ const MainNav = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "tomato",
+        activeTintColor: "green",
         inactiveTintColor: "gray",
       }}
     >

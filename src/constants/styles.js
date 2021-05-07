@@ -1,6 +1,7 @@
 import styles from "../../styles.json";
 import { create } from "tailwind-react-native";
 import { useColorScheme } from "react-native-appearance";
+import { fonts } from "./fonts";
 
 export const { style, variant, useTransition } = create(styles);
 export { useColorScheme };
@@ -65,15 +66,4 @@ export const textSizes = {
   "9XLARGE": style("text-9xl"),
 };
 
-export const fonts = {
-  lato_thin: "lato_thin",
-  lato_light: "lato_light",
-  lato_regular: "lato_regular",
-  lato_bold: "lato_bold",
-  lato_black: "lato_black",
-  open_sans_light: "open_sans_light",
-  open_sans_regular: "open_sans_regular",
-  open_sans_semi_bold: "open_sans_semi_bold",
-  open_sans_bold: "open_sans_bold",
-  open_sans_extra_bold: "open_sans_extra_bold",
-};
+export { fonts };

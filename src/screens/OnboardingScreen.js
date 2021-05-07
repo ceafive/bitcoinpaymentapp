@@ -1,7 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
-import OnboardingSlides from "../components/organisms/app/OnboardingSlides";
+import OnboardingSlides from "../components/organisms/OnboardingSlides";
 
 const OnboardingScreen = ({ navigation, route }) => {
   const goToLogin = () => {
@@ -12,5 +10,3 @@ const OnboardingScreen = ({ navigation, route }) => {
 };
 
 export default OnboardingScreen;
-
-const styles = StyleSheet.create({});

@@ -1,28 +1,31 @@
 import React from "react";
-import { Text } from "react-native";
+import { Paragraph, Title, Subheading, Headline, Caption, Text } from "react-native-paper";
 
-import { style, fonts, textSizes, useColorScheme, colorMode } from "../../../constants/styles";
-export { fonts as types };
+export const types = {
+  Text,
+  Paragraph,
+  Title,
+  Subheading,
+  Headline,
+  Caption,
+};
 
-const Typography = ({
-  text = null,
-  type = "lato_regular",
-  textStyles = {},
-  colorScheme = null,
-  children,
-}) => {
-  const scheme = useColorScheme();
-  const textColorScheme = colorMode(scheme, "text");
+/**
+ * @param text  text to render
+ * @param type type of text to render
+ * @param textStyles styles object to apply to text
+ * @param children React.Node to render
+ * @return JSX.Element
+ */
+
+const Typography = ({ text = null, type = Text, textStyles = {}, children, ...props }) => {
+  const ComponentToRender = type;
+
   return (
-    <Text
-      style={[
-        style(`font-${fonts[type]} `),
-        { ...textSizes.REGULAR, ...textColorScheme, ...textStyles },
-      ]}
-    >
+    <ComponentToRender style={textStyles} {...props}>
       {text && text}
       {children}
-    </Text>
+    </ComponentToRender>
   );
 };
 
