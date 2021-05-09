@@ -43,10 +43,15 @@ const PhoneInputIntl = ({ fieldName, errors, setFieldValue, setFieldError, input
             fontFamily: types.Lato_Regular,
             backgroundColor: theme.colors.background,
             color: theme.colors.text,
+            height: 56,
           }}
           textContainerStyle={{ backgroundColor: theme.colors.background, color: theme.colors.text }}
-          containerStyle={{ height: 56, ...inputWrapperStyles }}
-          codeTextStyle={{ fontFamily: types.Lato_Regular, backgroundColor: theme.colors.background, color: theme.colors.text }}
+          containerStyle={{ height: 56, width: "100%", ...inputWrapperStyles }}
+          codeTextStyle={{
+            fontFamily: types.Lato_Regular,
+            backgroundColor: theme.colors.background,
+            color: theme.colors.text,
+          }}
           flagButtonStyle={{
             backgroundColor: theme.colors.background,
             color: theme.colors.text,

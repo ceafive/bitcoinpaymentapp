@@ -1,7 +1,8 @@
 import React from "react";
-import { AuthCheck, StorageImage, useFirestoreDocData, useUser, useAuth, useFirestore } from "reactfire";
+import { useFirestoreDocData, useFirestore } from "reactfire";
 
-const useFetchUserDetails = (uid) => {
+const useFetchUserDetails = (uid = "") => {
+  // if (!uid) return {};
   const firestore = useFirestore();
   const userRef = firestore.collection("users").doc(uid);
   const { data, error, status } = useFirestoreDocData(userRef);

@@ -24,3 +24,7 @@ export const VerifyScreenSchema = yup.object({
     .max(6, ({ max }) => `Must be ${max} characters or less`)
     .required("Code is required"),
 });
+
+export const ResetPasswordSchema = yup.object({
+  email: yup.string().email("Invalid email address").required("Email is required"),
+});

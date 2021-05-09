@@ -3,26 +3,25 @@ import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { AuthCheck, StorageImage, useFirestoreDocData, useUser, useAuth, useFirestore } from "reactfire";
 import { style } from "../constants/styles";
-
+import Toast from "react-native-toast-message";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { ProfileScreen } from "../screens";
 
 import { HomeScreen } from "../screens";
 import { useFetchUserDetails } from "../hooks";
 
 const Tab = createBottomTabNavigator();
 
-const ProfileScreen = () => {
-  return (
-    <View>
-      <Text>WELCOME TO THE PROFILE SCREEN</Text>
-    </View>
-  );
-};
-
 const MainNav = () => {
   const { data: user } = useUser();
 
-  const { userDetails, error, status } = useFetchUserDetails(user.uid);
+  React.useEffect(() => {
+    Toast.show({
+      type: "success",
+      text1: `Login successful!😀`,
+    });
+  }, []);
 
   return (
     <Tab.Navigator

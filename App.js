@@ -7,10 +7,10 @@ import { AppearanceProvider } from "react-native-appearance";
 import { isFontLoaded } from "./src/constants/fonts";
 import { FirebaseAppProvider } from "reactfire";
 import { firebaseConfig } from "./src/config/firebaseconfig";
-
+import Toast from "react-native-toast-message";
 import AppNav from "./src/navigation/AppNav";
 import { SuspenseWithPerf } from "./src/components/helpers";
-import ThemeContext from "./src/context/ThemeContext";
+import AppContext from "./src/context";
 
 // Ignore log notification by message:
 LogBox.ignoreLogs(["TypeError: undefined is not an object (evaluating 'this._warmupSubscription')"]);
@@ -21,26 +21,29 @@ const LoadApp = ({ children }) => {
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <AppearanceProvider>
-        <ThemeContext>
-          <FirebaseAppProvider firebaseConfig={firebaseConfig} suspense={false}>
-            <SuspenseWithPerf>
-              <LoadApp>
-                <AppNav />
-              </LoadApp>
-            </SuspenseWithPerf>
-          </FirebaseAppProvider>
-          {/* <StatusBar style="auto" /> */}
-        </ThemeContext>
-      </AppearanceProvider>
-    </SafeAreaView>
+    <>
+      <Toast topOffset={Constants.statusBarHeight} style={{ zIndex: 9999999 }} ref={(ref) => Toast.setRef(ref)} />
+      <SafeAreaView style={styles.container}>
+        <AppearanceProvider>
+          <AppContext>
+            <FirebaseAppProvider firebaseConfig={firebaseConfig} suspense={false}>
+              <SuspenseWithPerf>
+                <LoadApp>
+                  <AppNav />
+                </LoadApp>
+              </SuspenseWithPerf>
+            </FirebaseAppProvider>
+            <StatusBar style="auto" />
+          </AppContext>
+        </AppearanceProvider>
+      </SafeAreaView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
   },
 });

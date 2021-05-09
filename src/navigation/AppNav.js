@@ -5,15 +5,16 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import AuthNav from "./AuthNav";
 import MainNav from "./MainNav";
-import { PreferencesContext } from "../context/ThemeContext";
+import { ThemeContext } from "../context";
 import { Provider as PaperProvider } from "react-native-paper";
 import { useUser } from "reactfire";
+import Constants from "expo-constants";
 
 const Stack = createStackNavigator();
 
 const AppNav = () => {
   const { data: user } = useUser();
-  const { theme } = React.useContext(PreferencesContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <NavigationContainer initialRouteName="Auth" theme={theme}>

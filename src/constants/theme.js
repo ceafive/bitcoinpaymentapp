@@ -2,6 +2,12 @@ import { DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultThem
 import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme, configureFonts } from "react-native-paper";
 import { fontConfig } from "./fonts";
 
+const brandColors = {};
+
+const brand = {
+  onboarding1: "#272050",
+};
+
 export const AppLightTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
@@ -14,6 +20,7 @@ export const AppLightTheme = {
     text: "rgb(0, 0, 0)",
     border: "rgb(199, 199, 204)",
     notification: "rgb(255, 69, 58)",
+    brand,
   },
   fonts: configureFonts(fontConfig),
 };
@@ -32,6 +39,7 @@ export const AppDarkTheme = {
     notification: "rgb(255, 69, 58)",
     primary: "rgb(10, 132, 255)",
     text: "rgb(255, 255, 255)",
+    brand,
   },
   fonts: configureFonts(fontConfig),
 };

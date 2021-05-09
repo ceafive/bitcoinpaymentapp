@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput as RNPTextInput } from "react-native-paper";
+import { IconButton, TextInput as RNPTextInput } from "react-native-paper";
 import Text, { types } from "../../atoms/typography/Text";
 
 const InputWithLabel = ({
@@ -8,9 +8,14 @@ const InputWithLabel = ({
   inputStyles,
   values,
   errors,
+  handleChange,
   setFieldValue,
   autoCapitalize = "none",
   theme = { roundness: 10 },
+  showPassword,
+  setShowPassword,
+  left,
+  right,
   ...props
 }) => {
   return (
@@ -20,10 +25,12 @@ const InputWithLabel = ({
         label={label}
         style={[{ ...inputStyles }]}
         value={values[fieldName]}
-        onChangeText={(text) => setFieldValue(fieldName, text)}
+        onChangeText={handleChange(fieldName)}
         theme={theme}
         autoCapitalize={autoCapitalize}
-        secureTextEntry={fieldName === "password"}
+        secureTextEntry={fieldName === "password" && !showPassword ? true : false}
+        left={left}
+        right={right}
         {...props}
       />
       {errors[fieldName] && <Text text={errors[fieldName]} type={types.Lato_Light} textStyles={{ color: "red" }} />}

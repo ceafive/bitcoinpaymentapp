@@ -8,7 +8,7 @@ import Typography, { types } from "../components/atoms/typography/Typography";
 import Button from "../components/atoms/buttons/Button";
 import { VerifyScreenSchema } from "../schemas/FormikValidationSchema";
 import { textSizes, fonts, style } from "../constants/styles";
-
+import Toast from "react-native-toast-message";
 import { View, ImageBackground, useWindowDimensions } from "react-native";
 import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
 
@@ -33,6 +33,7 @@ const VerificationScreen = ({ navigation, route }) => {
       if (isNewUser) {
         const userRef = firestore.collection("users").doc(user.uid);
         await userRef.set({
+          userID: user.uid,
           phoneNumber,
           dateCreated: timestampNow,
         });
@@ -42,25 +43,33 @@ const VerificationScreen = ({ navigation, route }) => {
     }
   };
 
+  React.useEffect(() => {
+    Toast.show({
+      type: "success",
+      text1: `Verfication code sent to you ${phoneNumber}`,
+    });
+  }, []);
+
   return (
-    <Screen wrapperStyles={{ ...style("px-4") }}>
-      <View style={{ justifyContent: "center", height: height / 2 }}>
+    <Scroller avoidKeyboard wrapperStyles={{ ...style("px-4") }}>
+      <Screen wrapperStyles={{ ...style("flex-1 justify-center items-center ") }}>
         <Typography
           type={types.Caption}
           text={`Code is sent to ${phoneNumber}`}
           textStyles={{ fontFamily: fonts.Lato_Black, textAlign: "center", ...textSizes["XLARGE"] }}
         />
-      </View>
-
-      <Verification
-        initialValues={{ code: "" }}
-        validationSchema={VerifyScreenSchema}
-        showBtn={true}
-        btnText={"Verify and Login"}
-        btnStyles={{ marginTop: 10, paddingVertical: 10, borderRadius: 10 }}
-        onPressSubmit={verfiyCodeAndLogin}
-      />
-    </Screen>
+      </Screen>
+      <Scroller avoidKeyboard>
+        <Verification
+          initialValues={{ code: "" }}
+          validationSchema={VerifyScreenSchema}
+          showBtn={true}
+          btnText={"Verify and Login"}
+          btnStyles={{ marginTop: 10, paddingVertical: 10, borderRadius: 10 }}
+          onPressSubmit={verfiyCodeAndLogin}
+        />
+      </Scroller>
+    </Scroller>
   );
 };
 

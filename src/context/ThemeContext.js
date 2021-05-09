@@ -1,14 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import { AppLightTheme, AppDarkTheme } from "../constants/theme";
 import { useColorScheme } from "react-native-appearance";
 
-export const PreferencesContext = React.createContext({
+export const ThemeContext = React.createContext({
   toggleTheme: () => {},
   isThemeDark: false,
 });
 
-const PreferencesProvider = ({ children }) => {
+const ThemeContextProvider = ({ children }) => {
   const scheme = useColorScheme();
   const [isThemeDark, setIsThemeDark] = React.useState(scheme === "dark" ? true : false);
   let theme = isThemeDark ? AppDarkTheme : AppLightTheme;
@@ -29,7 +28,7 @@ const PreferencesProvider = ({ children }) => {
     [toggleTheme, isThemeDark]
   );
 
-  return <PreferencesContext.Provider value={preferences}>{children}</PreferencesContext.Provider>;
+  return <ThemeContext.Provider value={preferences}>{children}</ThemeContext.Provider>;
 };
 
-export default PreferencesProvider;
+export default ThemeContextProvider;

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import VerificationForm from "../molecules/forms/VerificationForm";
 import BaseForm from "../molecules/forms/BaseForm";
 
-const Verification = ({ initialValues, showBtn, btnText, btnStyles = {}, onPressSubmit, ...props }) => {
+const Verification = ({ initialValues, showBtn, btnText, btnStyles = {}, fieldName = "code", label = "Code", onPressSubmit, ...props }) => {
   return (
     <BaseForm
       initialValues={initialValues}
@@ -13,7 +13,7 @@ const Verification = ({ initialValues, showBtn, btnText, btnStyles = {}, onPress
       onPressSubmit={onPressSubmit}
       {...props}
     >
-      <VerificationForm />
+      <VerificationForm fieldName={fieldName} label={label} />
     </BaseForm>
   );
 };

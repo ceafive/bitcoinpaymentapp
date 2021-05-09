@@ -1,14 +1,15 @@
 import React from "react";
-
+import { KeyboardAvoidingView } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { style } from "../../../constants/styles";
 
-const Scroller = ({ wrapperStyles, children, ...props }) => {
+const Scroller = ({ wrapperStyles, children, avoidKeyboard = false, ...props }) => {
+  const ComponentToRender = avoidKeyboard ? KeyboardAvoidingView : ScrollView;
   return (
-    <ScrollView style={[style("flex-1 px-5"), { ...wrapperStyles }]} {...props}>
+    <ComponentToRender style={[style("flex-1"), { ...wrapperStyles }]} {...props}>
       {children}
-    </ScrollView>
+    </ComponentToRender>
   );
 };
 
