@@ -2,10 +2,16 @@ import { DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultThem
 import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme, configureFonts } from "react-native-paper";
 import { fontConfig } from "./fonts";
 
-const brandColors = {};
+import tailwindConfig from "../../styles/tailwind.config";
+
+import { colorMode, fonts, sizes, style, textSizes, useColorScheme, useTransition, variant, styles } from "./styles";
+
+const brandColors = {
+  onboarding1: "#272050",
+};
 
 const brand = {
-  onboarding1: "#272050",
+  colors: brandColors,
 };
 
 export const AppLightTheme = {
@@ -14,7 +20,7 @@ export const AppLightTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    primary: "#2a2afa",
+    primary: tailwindConfig.theme.extend.colors.brandBlueTwo,
     background: "rgb(255, 255, 255)",
     card: "rgb(255, 255, 255)",
     text: "rgb(0, 0, 0)",
@@ -24,8 +30,6 @@ export const AppLightTheme = {
   },
   fonts: configureFonts(fontConfig),
 };
-// console.log({ ...PaperDefaultTheme.colors, ...NavigationDefaultTheme.colors });
-// console.log({ ...AppLightTheme });
 
 export const AppDarkTheme = {
   ...PaperDarkTheme,
@@ -33,11 +37,11 @@ export const AppDarkTheme = {
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
+    primary: "rgb(10, 132, 255)",
     background: "#000",
     border: "rgb(39, 39, 41)",
     card: "rgb(18, 18, 18)",
     notification: "rgb(255, 69, 58)",
-    primary: "rgb(10, 132, 255)",
     text: "rgb(255, 255, 255)",
     brand,
   },

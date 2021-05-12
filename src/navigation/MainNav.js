@@ -6,9 +6,7 @@ import { style } from "../constants/styles";
 import Toast from "react-native-toast-message";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { ProfileScreen } from "../screens";
-
-import { HomeScreen } from "../screens";
+import { HomeScreen, AccountScreen } from "../screens";
 import { useFetchUserDetails } from "../hooks";
 
 const Tab = createBottomTabNavigator();
@@ -16,12 +14,12 @@ const Tab = createBottomTabNavigator();
 const MainNav = () => {
   const { data: user } = useUser();
 
-  React.useEffect(() => {
-    Toast.show({
-      type: "success",
-      text1: `Login successful!😀`,
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   Toast.show({
+  //     type: "success",
+  //     text1: `Login successful!😀`,
+  //   });
+  // }, []);
 
   return (
     <Tab.Navigator
@@ -31,7 +29,7 @@ const MainNav = () => {
 
           if (route.name === "Home") {
             iconName = focused ? "ios-information-circle" : "ios-information-circle-outline";
-          } else if (route.name === "Profile") {
+          } else if (route.name === "Account") {
             iconName = focused ? "ios-list" : "ios-list";
           }
 
@@ -45,7 +43,7 @@ const MainNav = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );
 };

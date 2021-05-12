@@ -14,9 +14,9 @@ import { IconButton, Colors } from "react-native-paper";
 const Done = ({ isLight, ...props }) => {
   const theme = useTheme();
   return (
-    <View style={{ backgroundColor: theme.colors.brand.onboarding1, marginRight: 5, borderRadius: 999999999999999 }}>
+    <View style={{ backgroundColor: theme.colors.brand.colors.onboarding1, marginRight: 5, borderRadius: 999999999999999 }}>
       <IconButton icon="check" color={"white"} size={20} {...props} />
-      {/* <Button mode="contained" btnStyles={{ backgroundColor: theme.colors.brand.onboarding1 }} textStyles={{ color: "white" }} >
+      {/* <Button mode="contained" btnStyles={{ backgroundColor: theme.colors.brand.colors.onboarding1 }} textStyles={{ color: "white" }} >
         Login
       </Button> */}
     </View>
@@ -30,7 +30,10 @@ const Skip = ({ isLight, ...props }) => {
       {...props}
       type={types.Paragraph}
       text={props.skipLabel}
-      textStyles={[{ marginLeft: 10, color: theme.colors.brand.onboarding1, fontFamily: fonts.Lato_Regular }, { ...textSizes["REGULAR"] }]}
+      textStyles={[
+        { marginLeft: 10, color: theme.colors.brand.colors.onboarding1, fontFamily: fonts.Lato_Regular },
+        { ...textSizes["REGULAR"] },
+      ]}
     />
   );
 };
@@ -42,7 +45,10 @@ const Next = ({ isLight, ...props }) => {
       {...props}
       type={types.Paragraph}
       text={props.nextLabel}
-      textStyles={[{ marginRight: 10, color: theme.colors.brand.onboarding1, fontFamily: fonts.Lato_Regular }, { ...textSizes["REGULAR"] }]}
+      textStyles={[
+        { marginRight: 10, color: theme.colors.brand.colors.onboarding1, fontFamily: fonts.Lato_Regular },
+        { ...textSizes["REGULAR"] },
+      ]}
     />
   );
 };
@@ -52,7 +58,7 @@ const OnboardingImage = ({ img, size = { width: 100, height: 100 } }) => {
   return (
     <>
       <Image style={{ ...size }} source={img} />
-      <View style={{ width: "95%", height: 1, backgroundColor: theme.colors.brand.onboarding1 }}></View>
+      <View style={{ width: "95%", height: 1, backgroundColor: theme.colors.brand.colors.onboarding1 }}></View>
     </>
   );
 };
@@ -73,7 +79,7 @@ const TitleText = ({ text }) => {
     <Typography
       type={types.Title}
       text={text}
-      textStyles={[{ color: theme.colors.brand.onboarding1, fontFamily: fonts.Lato_Bold }, { ...textSizes["3XLARGE"] }]}
+      textStyles={[{ color: theme.colors.brand.colors.onboarding1, fontFamily: fonts.Lato_Bold }, { ...textSizes["3XLARGE"] }]}
     />
   );
 };

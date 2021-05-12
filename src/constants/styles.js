@@ -1,9 +1,8 @@
-import styles from "../../styles.json";
-import { create } from "tailwind-react-native";
+import { style, styles, useTransition, variant } from "../../styles";
 import { useColorScheme } from "react-native-appearance";
 import { fonts } from "./fonts";
 
-export const { style, variant, useTransition } = create(styles);
+export { style, variant, useTransition, styles as stylesJSON };
 export { useColorScheme };
 
 /**

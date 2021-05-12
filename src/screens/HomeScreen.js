@@ -6,11 +6,10 @@ import { useFetchUserDetails } from "../hooks";
 const HomeScreen = () => {
   const auth = useAuth();
   const { data: user } = useUser();
-  const { userDetails, error, status } = useFetchUserDetails(user?.uid);
+
   return (
     <View>
       <Text>WELCOME TO THE HOME SCREEN</Text>
-      <Text>{userDetails?.userID}</Text>
     </View>
   );
 };

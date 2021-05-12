@@ -12,8 +12,13 @@ import AppNav from "./src/navigation/AppNav";
 import { SuspenseWithPerf } from "./src/components/helpers";
 import AppContext from "./src/context";
 
+import "firebase/firestore";
+
 // Ignore log notification by message:
-LogBox.ignoreLogs(["TypeError: undefined is not an object (evaluating 'this._warmupSubscription')"]);
+LogBox.ignoreLogs([
+  "Native splash screen is already hidden",
+  "TypeError: undefined is not an object (evaluating 'this._warmupSubscription')",
+]);
 
 const LoadApp = ({ children }) => {
   return isFontLoaded() ? children : <AppLoading autoHideSplash={true} />;

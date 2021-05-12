@@ -323,6 +323,9 @@
 	"bg-brandBlueOne": {
 		"backgroundColor": "#1723FD"
 	},
+	"bg-brandBlueTwo": {
+		"backgroundColor": "#2a2afa"
+	},
 	"border-black": {
 		"borderColor": "#000"
 	},
@@ -2128,6 +2131,27 @@
 	},
 	"border-e-brandBlueOne": {
 		"borderEndColor": "#1723FD"
+	},
+	"border-brandBlueTwo": {
+		"borderColor": "#2a2afa"
+	},
+	"border-r-brandBlueTwo": {
+		"borderRightColor": "#2a2afa"
+	},
+	"border-l-brandBlueTwo": {
+		"borderLeft": "#2a2afa"
+	},
+	"border-t-brandBlueTwo": {
+		"borderTopColor": "#2a2afa"
+	},
+	"border-b-brandBlueTwo": {
+		"borderBottomColor": "#2a2afa"
+	},
+	"border-s-brandBlueTwo": {
+		"borderStartColor": "#2a2afa"
+	},
+	"border-e-brandBlueTwo": {
+		"borderEndColor": "#2a2afa"
 	},
 	"rounded-none": {
 		"borderRadius": 0
@@ -9888,6 +9912,12 @@
 	},
 	"text-s-brandBlueOne": {
 		"textShadowColor": "#1723FD"
+	},
+	"text-brandBlueTwo": {
+		"color": "#2a2afa"
+	},
+	"text-s-brandBlueTwo": {
+		"textShadowColor": "#2a2afa"
 	},
 	"underline": {
 		"textDecoration": "underline"

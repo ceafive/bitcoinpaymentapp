@@ -28,3 +28,16 @@ export const VerifyScreenSchema = yup.object({
 export const ResetPasswordSchema = yup.object({
   email: yup.string().email("Invalid email address").required("Email is required"),
 });
+
+export const EditProfileSchema = yup.object({
+  firstName: yup
+    .string()
+    .min(2, ({ min }) => `Must be ${min} characters or more`)
+    .required("First name is required"),
+  lastName: yup
+    .string()
+    .min(2, ({ min }) => `Must be ${min} characters or more`)
+    .required("Last name is required"),
+  dateOfBirth: yup.date().required("Date of birth is required"),
+  gender: yup.string().required("Gender is required"),
+});
