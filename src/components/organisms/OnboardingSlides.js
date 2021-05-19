@@ -1,15 +1,13 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { Image, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import { style, sizes, textSizes, fonts } from "../../constants/styles";
+import { Colors, IconButton, useTheme } from "react-native-paper";
 
-import { useTheme } from "react-native-paper";
-
-import Screen from "../atoms/containers/Screen";
-import Typography, { types } from "../atoms/typography/Typography";
-import Text, { types as textTypes } from "../atoms/typography/Text";
+import { fonts, sizes, style, textSizes } from "../../constants/styles";
 import Button from "../atoms/buttons/Button";
-import { IconButton, Colors } from "react-native-paper";
+import Screen from "../atoms/containers/Screen";
+import Text, { types as textTypes } from "../atoms/typography/Text";
+import Typography, { types } from "../atoms/typography/Typography";
 
 const Done = ({ isLight, ...props }) => {
   const theme = useTheme();

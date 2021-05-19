@@ -1,15 +1,15 @@
 import React from "react";
-import Verification from "../components/organisms/Verification";
+import { useWindowDimensions, View } from "react-native";
+import Toast from "react-native-toast-message";
+import { useAuth } from "reactfire";
+
 import Screen from "../components/atoms/containers/Screen";
 import Scroller from "../components/atoms/containers/Scroller";
-
-import { ResetPasswordSchema } from "../schemas/FormikValidationSchema";
-import { style, fonts, textSizes } from "../constants/styles";
-import Toast from "react-native-toast-message";
-import { View, useWindowDimensions } from "react-native";
-import { useAuth } from "reactfire";
-import { sleep } from "../utils";
 import Typography, { types } from "../components/atoms/typography/Typography";
+import Verification from "../components/organisms/Verification";
+import { fonts, style, textSizes } from "../constants/styles";
+import { ResetPasswordSchema } from "../schemas/FormikValidationSchema";
+import { sleep } from "../utils";
 
 const ResetPasswordScreen = ({ navigation, route }) => {
   const auth = useAuth();

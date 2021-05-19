@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+
 import { style } from "../../../../styles";
 
 /**
@@ -16,5 +17,3 @@ const ComponentSideBySide = ({ type = "row", wrapperStyles, children, ...props }
 };
 
 export default ComponentSideBySide;
-
-const styles = StyleSheet.create({});

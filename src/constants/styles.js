@@ -1,5 +1,6 @@
-import { style, styles, useTransition, variant } from "../../styles";
 import { useColorScheme } from "react-native-appearance";
+
+import { style, styles, useTransition, variant } from "../../styles";
 import { fonts } from "./fonts";
 
 export { style, variant, useTransition, styles as stylesJSON };

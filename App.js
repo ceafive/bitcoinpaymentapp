@@ -1,18 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, LogBox } from "react-native";
+import "firebase/firestore";
+
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import AppLoading from "expo-app-loading";
 import Constants from "expo-constants";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { LogBox, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { AppearanceProvider } from "react-native-appearance";
-import { isFontLoaded } from "./src/constants/fonts";
-import { FirebaseAppProvider } from "reactfire";
-import { firebaseConfig } from "./src/config/firebaseconfig";
 import Toast from "react-native-toast-message";
-import AppNav from "./src/navigation/AppNav";
-import { SuspenseWithPerf } from "./src/components/helpers";
-import AppContext from "./src/context";
+import { FirebaseAppProvider } from "reactfire";
 
-import "firebase/firestore";
+import { SuspenseWithPerf } from "./src/components/helpers";
+import { app } from "./src/config/firebase";
+import { firebaseConfig } from "./src/config/firebaseconfig";
+import { isFontLoaded } from "./src/constants/fonts";
+import AppContext from "./src/context";
+import AppNav from "./src/navigation/AppNav";
 
 // Ignore log notification by message:
 LogBox.ignoreLogs([
@@ -31,12 +34,14 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <AppearanceProvider>
           <AppContext>
-            <FirebaseAppProvider firebaseConfig={firebaseConfig} suspense={false}>
-              <SuspenseWithPerf>
-                <LoadApp>
-                  <AppNav />
-                </LoadApp>
-              </SuspenseWithPerf>
+            <FirebaseAppProvider firebaseConfig={firebaseConfig} firebaseApp={app} suspense>
+              <LoadApp>
+                <BottomSheetModalProvider>
+                  <SuspenseWithPerf>
+                    <AppNav />
+                  </SuspenseWithPerf>
+                </BottomSheetModalProvider>
+              </LoadApp>
             </FirebaseAppProvider>
             <StatusBar style="auto" />
           </AppContext>

@@ -1,8 +1,9 @@
 import React from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { StyleSheet, Text, View } from "react-native";
+
 import Screen from "../atoms/containers/Screen";
 import Typography, { types } from "../atoms/typography/Typography";
-import { ErrorBoundary } from "react-error-boundary";
 
 /**
  * @param errorText error text to render

@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
-import { StyleSheet, View, StatusBar } from "react-native";
-import PhoneInput from "react-native-phone-number-input";
-import { useTheme } from "react-native-paper";
-import Text, { types } from "../../atoms/typography/Text";
-
 import { Entypo } from "@expo/vector-icons";
+import React, { useRef, useState } from "react";
+import { StatusBar, StyleSheet, View } from "react-native";
+import { useTheme } from "react-native-paper";
+import PhoneInput from "react-native-phone-number-input";
+
+import Text, { types } from "../../atoms/typography/Text";
 
 const PhoneInputIntl = ({ fieldName, errors, setFieldValue, setFieldError, inputWrapperStyles = {}, ...props }) => {
   const theme = useTheme();

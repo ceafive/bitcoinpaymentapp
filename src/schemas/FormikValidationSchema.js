@@ -40,4 +40,5 @@ export const EditProfileSchema = yup.object({
     .required("Last name is required"),
   dateOfBirth: yup.date().required("Date of birth is required"),
   gender: yup.string().required("Gender is required"),
+  avatar: yup.mixed().required("Image is required"),
 });

@@ -1,6 +1,7 @@
 import React from "react";
-import { AppLightTheme, AppDarkTheme } from "../constants/theme";
 import { useColorScheme } from "react-native-appearance";
+
+import { AppDarkTheme, AppLightTheme } from "../constants/theme";
 
 export const ThemeContext = React.createContext({
   toggleTheme: () => {},
@@ -23,6 +24,7 @@ const ThemeContextProvider = ({ children }) => {
   const preferences = React.useMemo(
     () => ({
       theme,
+      isThemeDark,
       toggleTheme,
     }),
     [toggleTheme, isThemeDark]

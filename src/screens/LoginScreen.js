@@ -1,17 +1,18 @@
+import { FirebaseRecaptchaBanner, FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
 import React from "react";
-import Login from "../components/organisms/Login";
-import Scroller from "../components/atoms/containers/Scroller";
+import { ImageBackground, useWindowDimensions, View } from "react-native";
+import Toast from "react-native-toast-message";
+import { useAuth, useFirebaseApp, useFirestore } from "reactfire";
+
+import Button from "../components/atoms/buttons/Button";
 import Screen from "../components/atoms/containers/Screen";
+import Scroller from "../components/atoms/containers/Scroller";
 import Text, { types as textTypes } from "../components/atoms/typography/Text";
 import Typography, { types } from "../components/atoms/typography/Typography";
-import Button from "../components/atoms/buttons/Button";
-import { EmailLoginSchema, PhoneLoginForm } from "../schemas/FormikValidationSchema";
-import { textSizes, fonts, style } from "../constants/styles";
+import Login from "../components/organisms/Login";
 import { firebaseConfig } from "../config/firebaseconfig";
-import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from "expo-firebase-recaptcha";
-import Toast from "react-native-toast-message";
-import { View, ImageBackground, useWindowDimensions } from "react-native";
-import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
+import { fonts, style, textSizes } from "../constants/styles";
+import { EmailLoginSchema, PhoneLoginForm } from "../schemas/FormikValidationSchema";
 
 const image = require("@constants/images/location.png");
 
@@ -36,22 +37,21 @@ const LoginScreen = ({ navigation }) => {
     } catch (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      setLoginError(errorMessage);
       setSubmitting(false);
       // console.log(errorCode, errorMessage);
       if (errorCode === "auth/user-not-found") {
         try {
           const { additionalUserInfo, user } = await auth.createUserWithEmailAndPassword(email, password);
-          const { isNewUser } = additionalUserInfo;
-          if (isNewUser) {
-            const userRef = firestore.collection("users").doc(user.uid);
-            await userRef.set({
-              userID: user.uid,
-              email: user.email,
-              emailVerified: user.emailVerified,
-              dateCreated: timestampNow,
-            });
-          }
+          //     const { isNewUser } = additionalUserInfo;
+          //     if (isNewUser) {
+          //       const userRef = firestore.collection("users").doc(user.uid);
+          //       await userRef.set({
+          //         userID: user.uid,
+          //         email: user.email,
+          //         emailVerified: user.emailVerified,
+          //         dateCreated: timestampNow,
+          //       });
+          //     }
         } catch (error) {
           console.log(error);
         }

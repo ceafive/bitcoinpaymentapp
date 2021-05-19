@@ -1,8 +1,7 @@
+import subYears from "date-fns/subYears";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DatePickerModal } from "react-native-paper-dates";
-
-import subYears from "date-fns/subYears";
 
 const DatePicker = ({ fieldName = "", values, showDatePicker, setShowDatePicker, setFieldValue }) => {
   return (
@@ -12,10 +11,10 @@ const DatePicker = ({ fieldName = "", values, showDatePicker, setShowDatePicker,
       visible={showDatePicker}
       onDismiss={() => setShowDatePicker(false)}
       date={values[fieldName]}
-      onChange={({ date }) => {
-        setFieldValue(fieldName, date);
-        setShowDatePicker(false);
-      }}
+      // onChange={({ date }) => {
+      //   setFieldValue(fieldName, date);
+      //   setShowDatePicker(false);
+      // }}
       onConfirm={({ date }) => {
         setFieldValue(fieldName, date);
         setShowDatePicker(false);
@@ -25,7 +24,7 @@ const DatePicker = ({ fieldName = "", values, showDatePicker, setShowDatePicker,
         endDate: subYears(new Date(), 18), // optional
       }}
       // onChange={} // same props as onConfirm but triggered without confirmed by user
-      saveLabel={null} // optional
+      saveLabel={"Save"} // optional
       // label="Select date" // optional
       // animationType="slide" // optional, default is 'slide' on ios/android and 'none' on web
     />

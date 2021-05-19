@@ -1,5 +1,6 @@
 import React from "react";
 import { IconButton, TextInput as RNPTextInput } from "react-native-paper";
+
 import Text, { types } from "../../atoms/typography/Text";
 
 const InputWithLabel = ({

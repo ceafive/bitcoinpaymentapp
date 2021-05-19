@@ -1,5 +1,5 @@
 import React from "react";
-import { Paragraph, Title, Subheading, Headline, Caption, Text } from "react-native-paper";
+import { Caption, Headline, Paragraph, Subheading, Text, Title } from "react-native-paper";
 
 export const types = {
   Text,

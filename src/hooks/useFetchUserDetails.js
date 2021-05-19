@@ -1,7 +1,7 @@
 import React from "react";
-import { useFirestoreDocData, useFirestore } from "reactfire";
+import { useFirestore, useFirestoreDocData } from "reactfire";
 
-const useFetchUserDetails = (uid = "") => {
+const useFetchUserDetails = (uid) => {
   const firestore = useFirestore();
   const userRef = firestore.collection("users").doc(uid);
   const { data, error, status } = useFirestoreDocData(userRef, {});
@@ -10,7 +10,7 @@ const useFetchUserDetails = (uid = "") => {
 
   React.useEffect(() => {
     setUserDetails(data);
-  }, [uid]);
+  }, [data, error, status, uid]);
 
   return { userDetails, error, status };
 };

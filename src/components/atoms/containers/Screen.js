@@ -1,6 +1,6 @@
+import { style } from "@constants/styles";
 import React from "react";
 import { View } from "react-native";
-import { style } from "@constants/styles";
 
 /**
  * @param wrapperStyles styles to apply to View wrapper

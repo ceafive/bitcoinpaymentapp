@@ -1,7 +1,7 @@
-import React from "react";
-
-import { View } from "react-native";
 import { Formik } from "formik";
+import React from "react";
+import { View } from "react-native";
+
 import Button from "../../atoms/buttons/Button";
 
 const BaseForm = ({
@@ -11,6 +11,7 @@ const BaseForm = ({
   onPressSubmit,
   children,
   showBtn = true,
+  btnDisabled = false,
   btnStyles,
   ...formikProps
 }) => {
@@ -23,7 +24,13 @@ const BaseForm = ({
             <>
               {React.cloneElement(children, props)}
               {showBtn && (
-                <Button loading={isSubmitting} style={btnStyles} mode="contained" onPress={submitForm} disabled={!isValid || isSubmitting}>
+                <Button
+                  loading={isSubmitting}
+                  style={btnStyles}
+                  mode="contained"
+                  onPress={submitForm}
+                  disabled={!isValid || isSubmitting || btnDisabled}
+                >
                   {btnText}
                 </Button>
               )}

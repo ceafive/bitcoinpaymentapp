@@ -1,18 +1,22 @@
+/* eslint-disable react/display-name */
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { AuthCheck, StorageImage, useFirestoreDocData, useUser, useAuth, useFirestore } from "reactfire";
-import { style } from "../constants/styles";
+import { useTheme } from "react-native-paper";
 import Toast from "react-native-toast-message";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { AuthCheck, StorageImage, useAuth, useFirestore, useFirestoreDocData, useUser } from "reactfire";
 
-import { HomeScreen, AccountScreen } from "../screens";
+import { style } from "../constants/styles";
 import { useFetchUserDetails } from "../hooks";
+import { AccountScreen, HomeScreen } from "../screens";
+import ExtraNav from "./ExtraNav";
 
 const Tab = createBottomTabNavigator();
 
 const MainNav = () => {
   const { data: user } = useUser();
+  const theme = useTheme();
 
   // React.useEffect(() => {
   //   Toast.show({
@@ -38,16 +42,14 @@ const MainNav = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: "green",
+        activeTintColor: theme.colors.primary,
         inactiveTintColor: "gray",
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
+      <Tab.Screen name="Account" component={ExtraNav} />
     </Tab.Navigator>
   );
 };
 
 export default MainNav;
-
-const styles = StyleSheet.create({});

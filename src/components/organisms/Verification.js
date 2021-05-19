@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import VerificationForm from "../molecules/forms/VerificationForm";
+
 import BaseForm from "../molecules/forms/BaseForm";
+import VerificationForm from "../molecules/forms/VerificationForm";
 
 const Verification = ({ initialValues, showBtn, btnText, btnStyles = {}, fieldName = "code", label = "Code", onPressSubmit, ...props }) => {
   return (

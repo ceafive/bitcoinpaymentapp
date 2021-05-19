@@ -1,12 +1,12 @@
 import { DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
-import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme, configureFonts } from "react-native-paper";
-import { fontConfig } from "./fonts";
+import { configureFonts, DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from "react-native-paper";
 
 import tailwindConfig from "../../styles/tailwind.config";
-
-import { colorMode, fonts, sizes, style, textSizes, useColorScheme, useTransition, variant, styles } from "./styles";
+import { fontConfig } from "./fonts";
+import { colorMode, fonts, sizes, style, styles, textSizes, useColorScheme, useTransition, variant } from "./styles";
 
 const brandColors = {
+  ...tailwindConfig.theme.extend.colors,
   onboarding1: "#272050",
 };
 

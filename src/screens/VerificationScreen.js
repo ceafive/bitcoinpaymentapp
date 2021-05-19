@@ -1,16 +1,17 @@
 import React from "react";
-import Login from "../components/organisms/Login";
-import Verification from "../components/organisms/Verification";
-import Scroller from "../components/atoms/containers/Scroller";
+import { ImageBackground, useWindowDimensions, View } from "react-native";
+import Toast from "react-native-toast-message";
+import { useAuth, useFirebaseApp, useFirestore } from "reactfire";
+
+import Button from "../components/atoms/buttons/Button";
 import Screen from "../components/atoms/containers/Screen";
+import Scroller from "../components/atoms/containers/Scroller";
 import Text, { types as textTypes } from "../components/atoms/typography/Text";
 import Typography, { types } from "../components/atoms/typography/Typography";
-import Button from "../components/atoms/buttons/Button";
+import Login from "../components/organisms/Login";
+import Verification from "../components/organisms/Verification";
+import { fonts, style, textSizes } from "../constants/styles";
 import { VerifyScreenSchema } from "../schemas/FormikValidationSchema";
-import { textSizes, fonts, style } from "../constants/styles";
-import Toast from "react-native-toast-message";
-import { View, ImageBackground, useWindowDimensions } from "react-native";
-import { useAuth, useFirestore, useFirebaseApp } from "reactfire";
 
 const image = require("@constants/images/location.png");
 

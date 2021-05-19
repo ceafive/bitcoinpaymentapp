@@ -1,11 +1,11 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Typography from "../components/atoms/typography/Typography";
-import { createStackNavigator } from "@react-navigation/stack";
-import { fonts } from "../constants/styles";
 
-import { OnboardingScreen, LoginScreen, VerificationScreen, ResetPasswordScreen } from "../screens";
+import Typography from "../components/atoms/typography/Typography";
 import { SuspenseWithPerf } from "../components/helpers";
+import { fonts } from "../constants/styles";
+import { LoginScreen, OnboardingScreen, ResetPasswordScreen, VerificationScreen } from "../screens";
 
 const Stack = createStackNavigator();
 

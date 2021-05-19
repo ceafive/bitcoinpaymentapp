@@ -1,10 +1,11 @@
 import React from "react";
 import { View } from "react-native";
-import InputWithLabel from "../inputs/InputWithLabel";
 import { IconButton, TextInput as RNPTextInput } from "react-native-paper";
-import PhoneInputIntl from "../inputs/PhoneInput";
+
 import Scroller from "../../atoms/containers/Scroller";
 import Typography from "../../atoms/typography/Typography";
+import InputWithLabel from "../inputs/InputWithLabel";
+import PhoneInputIntl from "../inputs/PhoneInput";
 
 const ShowPassword = ({ showPassword, setShowPassword, ...props }) => {
   return (

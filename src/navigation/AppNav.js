@@ -1,14 +1,14 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
-import AuthNav from "./AuthNav";
-import MainNav from "./MainNav";
-import { ThemeContext } from "../context";
+import Constants from "expo-constants";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import { useUser } from "reactfire";
-import Constants from "expo-constants";
+
+import { ThemeContext } from "../context";
+import AuthNav from "./AuthNav";
+import MainNav from "./MainNav";
 
 const Stack = createStackNavigator();
 
