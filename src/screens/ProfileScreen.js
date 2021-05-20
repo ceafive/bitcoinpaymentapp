@@ -2,9 +2,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 
 import { fonts } from "../constants/fonts";
-import PaymentMethods from "./PaymentMethods";
-import ProfileDetailsScreen from "./ProfileDetailsScreen";
 import EditProfileScreen from "./EditProfileScreen";
+import PaymentMethodsScreen from "./PaymentMethodsScreen";
+import ProfileDetailsScreen from "./ProfileDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +16,7 @@ const ProfileScreenNav = () => {
           fontFamily: fonts.Lato_Regular,
         },
         headerBackTitleVisible: false,
+        // headerShown: false,
       })}
     >
       <Stack.Screen
@@ -33,8 +34,8 @@ const ProfileScreenNav = () => {
         })}
       />
       <Stack.Screen
-        name="PaymentMethods"
-        component={PaymentMethods}
+        name="PaymentMethodsScreen"
+        component={PaymentMethodsScreen}
         options={({ route }) => ({
           title: "Payment Methods",
         })}

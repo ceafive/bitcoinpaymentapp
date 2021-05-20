@@ -15,6 +15,7 @@ const ExtraNav = () => {
           fontFamily: fonts.Lato_Regular,
         },
         headerBackTitleVisible: false,
+        headerShown: false,
       })}
     >
       <Stack.Screen name="Account" component={AccountScreen} />

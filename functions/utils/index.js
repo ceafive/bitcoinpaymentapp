@@ -1,5 +1,5 @@
-const { logger } = require("./loggerUtils");
+const loggerUtils = require("./loggerUtils");
 
 module.exports = {
-  logger,
+  ...loggerUtils,
 };

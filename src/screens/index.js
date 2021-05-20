@@ -8,4 +8,4 @@ export { default as EditProfileScreen } from "./EditProfileScreen";
 export { default as ResetPasswordScreen } from "./ResetPasswordScreen";
 export { default as AccountScreen } from "./AccountScreen";
 export { default as WalletScreen } from "./WalletScreen";
-export { default as PaymentMethods } from "./PaymentMethods";
+export { default as PaymentMethodsScreen } from "./PaymentMethodsScreen";

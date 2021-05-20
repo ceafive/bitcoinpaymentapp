@@ -8,14 +8,14 @@ import Scroller from "../atoms/containers/Scroller";
 import Typography, { types } from "../atoms/typography/Typography";
 import ListWithIcon from "../molecules/lists/ListWithIcon";
 
-const ProfileDetails = ({ user, onPressGoToPaymentMethods, onPressGoToEditProfile }) => {
+const ProfileDetails = ({ user, onPressGoToPaymentMethodsScreen, onPressGoToEditProfile }) => {
   const theme = useTheme();
 
   const links = [
     {
       itemName: "Payment Methods",
       iconLeft: <IconButton icon={"credit-card-multiple-outline"} color={"black"} size={25} />,
-      iconRight: <IconButton icon="chevron-right" color="lightgray" size={25} onPress={onPressGoToPaymentMethods} />,
+      iconRight: <IconButton icon="chevron-right" color="lightgray" size={25} onPress={onPressGoToPaymentMethodsScreen} />,
     },
     {
       itemName: "Transactions",

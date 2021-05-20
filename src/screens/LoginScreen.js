@@ -38,20 +38,10 @@ const LoginScreen = ({ navigation }) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       setSubmitting(false);
-      // console.log(errorCode, errorMessage);
+      console.log("signUserInEmail ===>", errorCode, errorMessage);
       if (errorCode === "auth/user-not-found") {
         try {
-          const { additionalUserInfo, user } = await auth.createUserWithEmailAndPassword(email, password);
-          //     const { isNewUser } = additionalUserInfo;
-          //     if (isNewUser) {
-          //       const userRef = firestore.collection("users").doc(user.uid);
-          //       await userRef.set({
-          //         userID: user.uid,
-          //         email: user.email,
-          //         emailVerified: user.emailVerified,
-          //         dateCreated: timestampNow,
-          //       });
-          //     }
+          await auth.createUserWithEmailAndPassword(email, password);
         } catch (error) {
           console.log(error);
         }
@@ -96,7 +86,6 @@ const LoginScreen = ({ navigation }) => {
           showBtn={true}
           btnStyles={{ marginTop: 10, paddingVertical: 10, borderRadius: 10 }}
           onPressSubmit={(values, actions) => {
-            // console.log(actions);
             authMode === "email" ? signUserInEmail(values, actions) : signUserInPhone(values, actions);
           }}
         />

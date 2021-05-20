@@ -1,7 +1,7 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 
-const onCreateNewUser = functions.auth.user().onCreate(async (userData, context) => {
+exports.onCreateNewUser = functions.auth.user().onCreate(async (userData, context) => {
   console.log(userData.toJSON());
   const user = userData.toJSON();
 
@@ -19,5 +19,3 @@ const onCreateNewUser = functions.auth.user().onCreate(async (userData, context)
     dateCreated: firestore.FieldValue.serverTimestamp(),
   });
 });
-
-module.exports = onCreateNewUser;

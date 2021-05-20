@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import { IconButton, TextInput as RNPTextInput } from "react-native-paper";
 
 import Scroller from "../../atoms/containers/Scroller";

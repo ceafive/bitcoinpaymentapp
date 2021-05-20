@@ -21,6 +21,7 @@ import AppNav from "./src/navigation/AppNav";
 LogBox.ignoreLogs([
   "Native splash screen is already hidden",
   "TypeError: undefined is not an object (evaluating 'this._warmupSubscription')",
+  "Setting a timer",
 ]);
 
 const LoadApp = ({ children }) => {
@@ -36,11 +37,9 @@ export default function App() {
           <AppContext>
             <FirebaseAppProvider firebaseConfig={firebaseConfig} firebaseApp={app} suspense>
               <LoadApp>
-                <BottomSheetModalProvider>
-                  <SuspenseWithPerf>
-                    <AppNav />
-                  </SuspenseWithPerf>
-                </BottomSheetModalProvider>
+                <SuspenseWithPerf>
+                  <AppNav />
+                </SuspenseWithPerf>
               </LoadApp>
             </FirebaseAppProvider>
             <StatusBar style="auto" />

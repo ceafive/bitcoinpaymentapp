@@ -32,6 +32,7 @@ const InputWithLabel = ({
         secureTextEntry={fieldName === "password" && !showPassword ? true : false}
         left={left}
         right={right}
+        error={errors[fieldName]}
         {...props}
       />
       {errors[fieldName] && <Text text={errors[fieldName]} type={types.Lato_Light} textStyles={{ color: "red" }} />}

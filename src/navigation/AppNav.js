@@ -1,3 +1,4 @@
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Constants from "expo-constants";
@@ -19,11 +20,13 @@ const AppNav = () => {
   return (
     <NavigationContainer initialRouteName="Auth" theme={theme}>
       <PaperProvider theme={theme}>
-        <Stack.Navigator headerMode="none">
-          {/* <Stack.Screen name="Auth" component={AuthNav} /> */}
-          {!user && <Stack.Screen name="Auth" component={AuthNav} />}
-          {user && <Stack.Screen name="Main" component={MainNav} />}
-        </Stack.Navigator>
+        <BottomSheetModalProvider>
+          <Stack.Navigator headerMode="none">
+            {/* <Stack.Screen name="Auth" component={AuthNav} /> */}
+            {!user && <Stack.Screen name="Auth" component={AuthNav} />}
+            {user && <Stack.Screen name="Main" component={MainNav} />}
+          </Stack.Navigator>
+        </BottomSheetModalProvider>
       </PaperProvider>
     </NavigationContainer>
   );

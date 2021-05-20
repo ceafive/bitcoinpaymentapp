@@ -1,5 +1,7 @@
-const onCreateNewUser = require("./auth/onCreateNewUser");
+const auth = require("./auth");
+const database = require("./database");
 
 module.exports = {
-  onCreateNewUser,
+  ...auth,
+  ...database,
 };

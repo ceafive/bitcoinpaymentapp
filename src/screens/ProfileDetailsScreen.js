@@ -14,8 +14,8 @@ const ProfileDetailsScreen = ({ navigation, route }) => {
   const { data: user } = useUser();
   const { userDetails } = useFetchUserDetails(user?.uid);
 
-  const onPressGoToPaymentMethods = () => {
-    navigation.navigate("PaymentMethods");
+  const onPressGoToPaymentMethodsScreen = () => {
+    navigation.navigate("PaymentMethodsScreen");
   };
 
   const onPressGoToEditProfile = () => {
@@ -23,7 +23,7 @@ const ProfileDetailsScreen = ({ navigation, route }) => {
   };
 
   const actions = {
-    onPressGoToPaymentMethods,
+    onPressGoToPaymentMethodsScreen,
     onPressGoToEditProfile,
   };
 

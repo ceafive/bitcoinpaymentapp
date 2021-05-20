@@ -12,4 +12,16 @@ const listLinks = (links) => {
   }));
 };
 
-export { listLinks };
+const networkCodes = [
+  { label: "MTN", value: "MTN" },
+  { label: "VODAFONE", value: "VOD" },
+  { label: "AIRTEL", value: "AIR" },
+  { label: "TIGO", value: "TIG" },
+];
+
+const bankCardTypes = [
+  { label: "Visa", value: "VISA" },
+  { label: "Mastercard", value: "MASTERCARD" },
+];
+
+export { listLinks, networkCodes, bankCardTypes };
