@@ -1,6 +1,5 @@
 import { Formik } from "formik";
 import React from "react";
-import { View } from "react-native";
 
 import Button from "../../atoms/buttons/Button";
 

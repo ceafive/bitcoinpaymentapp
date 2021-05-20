@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Avatar } from "react-native-paper";
+import { Avatar, IconButton } from "react-native-paper";
 
 import { style } from "../../../../styles";
 import { fonts } from "../../../constants/fonts";
 import ComponentSideBySide from "../../atoms/containers/ComponentSideBySide";
 import Typography, { types } from "../../atoms/typography/Typography";
 
-const PaymentCard = ({ payment, paymentType, cardData, fieldName, startIndex, endIndex }) => {
+const PaymentCard = ({ payment, paymentType, cardData, fieldName, startIndex, endIndex, onPressDeletePayment }) => {
   const paymentNumber = payment[`${paymentType}Number`];
   const paymentNumberLength = paymentNumber?.length;
   const extract = paymentNumber?.substring(startIndex, paymentNumberLength - endIndex);
@@ -32,6 +32,15 @@ const PaymentCard = ({ payment, paymentType, cardData, fieldName, startIndex, en
         </Typography>
         <Typography textStyles={{ color: "#B7C6D1" }}>{newNumber}</Typography>
       </ComponentSideBySide>
+      <IconButton
+        icon="delete"
+        color="red"
+        size={15}
+        style={{ ...style("absolute top-0 right-0") }}
+        onPress={() => {
+          onPressDeletePayment(payment);
+        }}
+      />
     </ComponentSideBySide>
   );
 };

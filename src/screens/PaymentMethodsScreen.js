@@ -18,6 +18,7 @@ import AddCardPaymentForm from "../components/molecules/forms/AddCardPaymentForm
 import AddMomoPaymentForm from "../components/molecules/forms/AddMomoPaymentForm";
 import BaseForm from "../components/molecules/forms/BaseForm";
 import AddPaymentButton from "../components/molecules/misc/AddPaymentButton";
+import PaymentMethods from "../components/organisms/PaymentMethods";
 import { fonts } from "../constants/fonts";
 import { textSizes } from "../constants/styles";
 import { closeModal, showModal } from "../functions";
@@ -41,38 +42,36 @@ const initialMoMoValues = {
 const PaymentMethodsScreen = () => {
   const theme = useTheme();
   const firestore = useFirestore();
+  const firestoreStatics = useFirestore;
   const { data: user } = useUser();
   const [bankCards, setBankCards] = React.useState(false);
   const [initialData, setInitialData] = React.useState({});
   const bottomSheetModal = React.useRef(null);
 
   // query bank cards and momo payments
-  const momoPaymentRef = firestore.collection("users").doc(user?.uid).collection("momoPayments");
-  const bankPaymentRef = firestore.collection("users").doc(user?.uid).collection("bankPayments");
+  const createQuery = (key) => firestore.collection("users").doc(user?.uid).collection(key).orderBy("addedOn", "desc");
+  const { data: momoPayments } = useFirestoreCollectionData(createQuery(`momoPayments`), {
+    idField: "docID",
+  });
+  const { data: bankPayments } = useFirestoreCollectionData(createQuery(`bankPayments`), {
+    idField: "docID",
+  });
 
-  const { data: momoPayments } = useFirestoreCollectionData(momoPaymentRef, {
-    idField: "docID",
-  });
-  const { data: bankPayments } = useFirestoreCollectionData(bankPaymentRef, {
-    idField: "docID",
-  });
+  const timeStamp = firestoreStatics.FieldValue.serverTimestamp;
 
   const onPressSavePayment = async (data) => {
     try {
       data = bankCards ? { ...data, type: data?.type?.value } : { ...data, networkCode: data?.networkCode?.value };
+      const collection = bankCards ? `bankPayments` : `momoPayments`;
 
-      const paymentRef = firestore
-        .collection("users")
-        .doc(user?.uid)
-        .collection(bankCards ? `bankPayments` : `momoPayments`)
-        .doc();
+      const paymentRef = firestore.collection("users").doc(user?.uid).collection(collection).doc();
 
-      await paymentRef.set(data, { merge: true });
+      await paymentRef.set({ ...data, collection, addedOn: timeStamp() }, { merge: true });
 
       closeModal(bottomSheetModal);
       Toast.show({
         type: "success",
-        text1: "Card Saved ",
+        text1: "Card Saved",
       });
     } catch (error) {
       console.log(error);
@@ -83,66 +82,49 @@ const PaymentMethodsScreen = () => {
     }
   };
 
+  const onPressDeletePayment = async (data) => {
+    try {
+      const paymentRef = firestore
+        .collection("users")
+        .doc(user?.uid)
+        .collection(bankCards ? `bankPayments` : `momoPayments`)
+        .doc(data?.docID);
+
+      await paymentRef.delete();
+
+      Toast.show({
+        type: "success",
+        text1: "Deleted",
+      });
+    } catch (error) {
+      console.log(error);
+      Toast.show({
+        type: "error",
+        text1: "Delete Failed",
+      });
+    }
+  };
+
   return (
-    <Scroller wrapperStyles={{ marginHorizontal: 20, marginTop: 10 }}>
-      <AddPaymentButton
-        text="My banking cards"
-        onPress={() => {
-          setBankCards(true);
-          setInitialData(initialCardValues);
-          showModal(bottomSheetModal);
-        }}
-      />
-      {bankPayments.map((bankPayment) => {
-        return (
-          <PaymentCard
-            key={bankPayment?.docID}
-            cardData={bankCardData}
-            paymentType="card"
-            startIndex={1}
-            endIndex={4}
-            fieldName="type"
-            payment={bankPayment}
-          />
-        );
-      })}
-
-      <AddPaymentButton
-        text="My mobile money accounts"
-        onPress={() => {
-          setBankCards(false);
-          setInitialData(initialMoMoValues);
-          showModal(bottomSheetModal);
-        }}
-      />
-      {momoPayments.map((momoPayment) => {
-        return (
-          <PaymentCard
-            key={momoPayment?.docID}
-            cardData={networkCodeData}
-            paymentType="momo"
-            startIndex={3}
-            endIndex={2}
-            fieldName="networkCode"
-            payment={momoPayment}
-          />
-        );
-      })}
-
-      <BottomSheetModal name="paymentModal" ref={bottomSheetModal} snap={["70%", "75%"]}>
-        <Scroller wrapperStyles={style("flex-0 p-4")}>
-          <BaseForm
-            initialValues={initialData}
-            btnText={`Add ${bankCards ? "Card" : "Payment Method"}`}
-            btnStyles={{ marginTop: 20, paddingVertical: 10, borderRadius: 10 }}
-            onPressSubmit={onPressSavePayment}
-            validationSchema={bankCards ? AddCardPaymentSchema : AddMoMoPaymentSchema}
-          >
-            {bankCards ? <AddCardPaymentForm /> : <AddMomoPaymentForm />}
-          </BaseForm>
-        </Scroller>
-      </BottomSheetModal>
-    </Scroller>
+    <PaymentMethods
+      bankCards={bankCards}
+      bankPayments={bankPayments}
+      bottomSheetModal={bottomSheetModal}
+      initialData={initialData}
+      momoPayments={momoPayments}
+      onPressAddMoMo={() => {
+        setBankCards(false);
+        setInitialData(initialMoMoValues);
+        showModal(bottomSheetModal);
+      }}
+      onPressAddCard={() => {
+        setBankCards(true);
+        setInitialData(initialCardValues);
+        showModal(bottomSheetModal);
+      }}
+      onPressSavePayment={onPressSavePayment}
+      onPressDeletePayment={onPressDeletePayment}
+    />
   );
 };
 

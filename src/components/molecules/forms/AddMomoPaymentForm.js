@@ -18,6 +18,7 @@ const AddMomoPaymentForm = ({ ...props }) => {
       <InputWithLabel
         label="Full Name"
         fieldName="fullName"
+        placeholder="John Doe"
         left={<RNPTextInput.Icon color="gray" icon={"account-outline"} size={20} />}
         {...props}
       />
