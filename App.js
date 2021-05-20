@@ -36,11 +36,11 @@ export default function App() {
         <AppearanceProvider>
           <AppContext>
             <FirebaseAppProvider firebaseConfig={firebaseConfig} firebaseApp={app} suspense>
-              <LoadApp>
-                <SuspenseWithPerf>
+              <SuspenseWithPerf>
+                <LoadApp>
                   <AppNav />
-                </SuspenseWithPerf>
-              </LoadApp>
+                </LoadApp>
+              </SuspenseWithPerf>
             </FirebaseAppProvider>
             <StatusBar style="auto" />
           </AppContext>

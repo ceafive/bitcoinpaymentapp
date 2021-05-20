@@ -34,7 +34,6 @@ const AddCardPaymentForm = ({ ...props }) => {
       <Picker
         onItemChange={(data) => {
           props.setFieldValue("type", data);
-          console.log(data);
         }}
         items={bankCardTypes}
         placeholder="Card Type"

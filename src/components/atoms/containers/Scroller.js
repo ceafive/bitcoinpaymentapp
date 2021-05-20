@@ -7,7 +7,7 @@ import { style } from "../../../constants/styles";
 const Scroller = ({ wrapperStyles, children, avoidKeyboard = false, ...props }) => {
   const ComponentToRender = avoidKeyboard ? KeyboardAvoidingView : ScrollView;
   return (
-    <ComponentToRender style={{ ...style("flex-1"), ...wrapperStyles }} {...props}>
+    <ComponentToRender style={{ ...style("flex-1"), ...wrapperStyles }} showsVerticalScrollIndicator={false} {...props}>
       {children}
     </ComponentToRender>
   );

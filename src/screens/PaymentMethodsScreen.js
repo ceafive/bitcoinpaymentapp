@@ -1,23 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NativeViewGestureHandler } from "react-native-gesture-handler";
-import { Avatar, Surface, useTheme } from "react-native-paper";
-import { useFirestore, useUser } from "reactfire";
+import { Avatar, IconButton, Surface, useTheme } from "react-native-paper";
+import Toast from "react-native-toast-message";
+import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 
 import { style } from "../../styles";
 import Button from "../components/atoms/buttons/Button";
 import ComponentSideBySide from "../components/atoms/containers/ComponentSideBySide";
 import Screen from "../components/atoms/containers/Screen";
 import Scroller from "../components/atoms/containers/Scroller";
+import Text, { types as textTypes } from "../components/atoms/typography/Text";
 import Typography, { types } from "../components/atoms/typography/Typography";
 import BottomSheetModal from "../components/misc/BottomSheetModal";
+import PaymentCard from "../components/molecules/cards/PaymentCard";
 import AddCardPaymentForm from "../components/molecules/forms/AddCardPaymentForm";
 import AddMomoPaymentForm from "../components/molecules/forms/AddMomoPaymentForm";
 import BaseForm from "../components/molecules/forms/BaseForm";
+import AddPaymentButton from "../components/molecules/misc/AddPaymentButton";
 import { fonts } from "../constants/fonts";
 import { textSizes } from "../constants/styles";
 import { closeModal, showModal } from "../functions";
 import { AddCardPaymentSchema, AddMoMoPaymentSchema } from "../schemas/FormikValidationSchema";
+import { bankCardData, networkCodeData } from "../utils/items";
 
 const initialCardValues = {
   fullName: "",
@@ -36,22 +41,25 @@ const initialMoMoValues = {
 const PaymentMethodsScreen = () => {
   const theme = useTheme();
   const firestore = useFirestore();
-  const user = useUser();
+  const { data: user } = useUser();
   const [bankCards, setBankCards] = React.useState(false);
   const [initialData, setInitialData] = React.useState({});
   const bottomSheetModal = React.useRef(null);
 
-  // console.log(user);
+  // query bank cards and momo payments
+  const momoPaymentRef = firestore.collection("users").doc(user?.uid).collection("momoPayments");
+  const bankPaymentRef = firestore.collection("users").doc(user?.uid).collection("bankPayments");
+
+  const { data: momoPayments } = useFirestoreCollectionData(momoPaymentRef, {
+    idField: "docID",
+  });
+  const { data: bankPayments } = useFirestoreCollectionData(bankPaymentRef, {
+    idField: "docID",
+  });
 
   const onPressSavePayment = async (data) => {
     try {
-      const type = bankCards ? data?.type?.value : data?.networkCode?.value;
-      const networkCode = bankCards ? data?.type?.value : data?.networkCode?.value;
-
-      data = bankCards ? { ...data, type } : { ...data, networkCode };
-
-      console.log(data);
-      return;
+      data = bankCards ? { ...data, type: data?.type?.value } : { ...data, networkCode: data?.networkCode?.value };
 
       const paymentRef = firestore
         .collection("users")
@@ -60,113 +68,66 @@ const PaymentMethodsScreen = () => {
         .doc();
 
       await paymentRef.set(data, { merge: true });
+
       closeModal(bottomSheetModal);
+      Toast.show({
+        type: "success",
+        text1: "Card Saved ",
+      });
     } catch (error) {
       console.log(error);
+      Toast.show({
+        type: "error",
+        text1: "Try Again",
+      });
     }
   };
 
   return (
     <Scroller wrapperStyles={{ marginHorizontal: 20, marginTop: 10 }}>
-      <ComponentSideBySide wrapperStyles={style("items-center justify-between")}>
-        <Typography textStyles={{ color: "#BEBEC0", ...textSizes["SMALL"] }}>My banking cards</Typography>
-        <Button
-          mode="text"
-          uppercase={false}
-          color="#BEBEC0"
-          compact
-          btnStyles={{ ...textSizes["4XLARGE"] }}
-          onPress={() => {
-            setBankCards(true);
-            setInitialData(initialCardValues);
-            showModal(bottomSheetModal);
-          }}
-        >
-          + Add
-        </Button>
-      </ComponentSideBySide>
+      <AddPaymentButton
+        text="My banking cards"
+        onPress={() => {
+          setBankCards(true);
+          setInitialData(initialCardValues);
+          showModal(bottomSheetModal);
+        }}
+      />
+      {bankPayments.map((bankPayment) => {
+        return (
+          <PaymentCard
+            key={bankPayment?.docID}
+            cardData={bankCardData}
+            paymentType="card"
+            startIndex={1}
+            endIndex={4}
+            fieldName="type"
+            payment={bankPayment}
+          />
+        );
+      })}
 
-      <ComponentSideBySide wrapperStyles={{ borderRadius: 15, marginVertical: 10, backgroundColor: "#F3F5F9", padding: 15 }}>
-        <Avatar.Image
-          style={{ marginRight: 10 }}
-          size={50}
-          source={{
-            uri: "https://lh6.ggpht.com/dQ72DEJqMAPT9X8W90gV45UKmGfEDghc2T4ARnWO3kyjPRaP3X00YLs696LRRyHyoGk=h800",
-          }}
-        />
-        <ComponentSideBySide type="col" wrapperStyles={style()}>
-          <Typography type={types.Subheading} textStyles={{ fontFamily: fonts.Lato_Black }}>
-            Visa
-          </Typography>
-          <Typography textStyles={{ color: "#B7C6D1" }}>4*************2 4567</Typography>
-        </ComponentSideBySide>
-      </ComponentSideBySide>
-
-      <ComponentSideBySide wrapperStyles={{ borderRadius: 15, marginVertical: 10, backgroundColor: "#F3F5F9", padding: 15 }}>
-        <Avatar.Image
-          style={{ marginRight: 10 }}
-          size={50}
-          source={{
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGS68HGBEbUvi1keG0QFFk8N0GNmykrFCU6FwvhXOV_tcNIEU54LABLCyVBK1GeXEFpsk&usqp=CAU",
-          }}
-        />
-        <ComponentSideBySide type="col" wrapperStyles={style()}>
-          <Typography type={types.Subheading} textStyles={{ fontFamily: fonts.Lato_Black }}>
-            Mastercard
-          </Typography>
-          <Typography textStyles={{ color: "#B7C6D1" }}>4*************2 4567</Typography>
-        </ComponentSideBySide>
-      </ComponentSideBySide>
-
-      <ComponentSideBySide wrapperStyles={style("items-center justify-between")}>
-        <Typography textStyles={{ color: "#BEBEC0", ...textSizes["SMALL"] }}>My mobile money accounts</Typography>
-        <Button
-          mode="text"
-          uppercase={false}
-          color="#BEBEC0"
-          compact
-          btnStyles={{ ...textSizes["4XLARGE"] }}
-          onPress={() => {
-            setBankCards(false);
-            setInitialData(initialMoMoValues);
-            showModal(bottomSheetModal);
-          }}
-        >
-          + Add
-        </Button>
-      </ComponentSideBySide>
-
-      <ComponentSideBySide wrapperStyles={{ borderRadius: 15, marginVertical: 10, backgroundColor: "#F3F5F9", padding: 15 }}>
-        <Avatar.Image
-          style={{ marginRight: 10 }}
-          size={50}
-          source={{
-            uri: "https://banner2.cleanpng.com/20180807/bs/kisspng-logo-mtn-ivory-coast-brand-product-design-mtn-grou-clients7-5b6a532a34f317.7185509615336947622169.jpg",
-          }}
-        />
-        <ComponentSideBySide type="col" wrapperStyles={style()}>
-          <Typography type={types.Subheading} textStyles={{ fontFamily: fonts.Lato_Black }}>
-            MTN
-          </Typography>
-          <Typography textStyles={{ color: "#B7C6D1" }}>4*************2 4567</Typography>
-        </ComponentSideBySide>
-      </ComponentSideBySide>
-
-      <ComponentSideBySide wrapperStyles={{ borderRadius: 15, marginVertical: 10, backgroundColor: "#F3F5F9", padding: 15 }}>
-        <Avatar.Image
-          style={{ marginRight: 10 }}
-          size={50}
-          source={{
-            uri: "https://play-lh.googleusercontent.com/N_CHa0A5TzzGiSGhYJTDNtib-r2jXEUwvuq0mgmbwFQfE6z302wKLa9aowjPSo4a8HA",
-          }}
-        />
-        <ComponentSideBySide type="col" wrapperStyles={style()}>
-          <Typography type={types.Subheading} textStyles={{ fontFamily: fonts.Lato_Black }}>
-            Vodafone
-          </Typography>
-          <Typography textStyles={{ color: "#B7C6D1" }}>4*************2 4567</Typography>
-        </ComponentSideBySide>
-      </ComponentSideBySide>
+      <AddPaymentButton
+        text="My mobile money accounts"
+        onPress={() => {
+          setBankCards(false);
+          setInitialData(initialMoMoValues);
+          showModal(bottomSheetModal);
+        }}
+      />
+      {momoPayments.map((momoPayment) => {
+        return (
+          <PaymentCard
+            key={momoPayment?.docID}
+            cardData={networkCodeData}
+            paymentType="momo"
+            startIndex={3}
+            endIndex={2}
+            fieldName="networkCode"
+            payment={momoPayment}
+          />
+        );
+      })}
 
       <BottomSheetModal name="paymentModal" ref={bottomSheetModal} snap={["70%", "75%"]}>
         <Scroller wrapperStyles={style("flex-0 p-4")}>

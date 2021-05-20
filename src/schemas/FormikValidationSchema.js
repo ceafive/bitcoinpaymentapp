@@ -50,8 +50,8 @@ export const AddCardPaymentSchema = yup.object({
     .required("Full name is required"),
   cardNumber: yup
     .string()
-    .min(14, ({ min }) => `Must be ${min} characters`)
-    .max(14, ({ max }) => `Must be ${max} characters`)
+    .min(16, ({ min }) => `Must be ${min} characters`)
+    .max(16, ({ max }) => `Must be ${max} characters`)
     .required("Card number is required"),
   expiryDate: yup.mixed().required("Expiry date is required"),
   cvv: yup

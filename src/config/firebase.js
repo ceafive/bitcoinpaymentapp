@@ -27,17 +27,17 @@ export const functions = firebase.functions();
 // eslint-disable-next-line no-undef
 
 // for android emulator
-if (__DEV__) {
-  firestore.useEmulator("10.0.2.2", 8080);
-  rtdb.useEmulator("10.0.2.2", 9000);
-  auth.useEmulator("http://10.0.2.2:9099", { disableWarnings: true });
-  // auth.useEmulator("http://localhost:9099/", { disableWarnings: true });
-  functions.useEmulator("10.0.2.2", 5001);
-}
-
 // if (__DEV__) {
-//   firestore.useEmulator("localhost", 8080);
-//   rtdb.useEmulator("localhost", 9000);
-//   auth.useEmulator("http://localhost:9099", { disableWarnings: true });
-//   functions.useEmulator("localhost", 5001);
+//   firestore.useEmulator("10.0.2.2", 8080);
+//   rtdb.useEmulator("10.0.2.2", 9000);
+//   auth.useEmulator("http://10.0.2.2:9099", { disableWarnings: true });
+//   // auth.useEmulator("http://localhost:9099/", { disableWarnings: true });
+//   functions.useEmulator("10.0.2.2", 5001);
 // }
+
+if (__DEV__) {
+  firestore.useEmulator("localhost", 8080);
+  rtdb.useEmulator("localhost", 9000);
+  auth.useEmulator("http://localhost:9099", { disableWarnings: true });
+  functions.useEmulator("localhost", 5001);
+}
