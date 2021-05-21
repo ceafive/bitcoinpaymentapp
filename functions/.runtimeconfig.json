@@ -1,0 +1,6 @@
+{
+  "cmc": {
+    "url": "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
+    "apikey": "da42a979-be0d-47f2-ae3e-e8174b9bd43d"
+  }
+}

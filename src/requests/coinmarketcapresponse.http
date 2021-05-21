@@ -1,0 +1,15 @@
+HTTP/1.1 200 OK
+Date: Thu, 20 May 2021 21:33:49 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+vary: origin,accept-encoding
+cache-control: no-cache
+content-encoding: gzip
+CF-Cache-Status: DYNAMIC
+cf-request-id: 0a2d4c047d00004be3b280e000000001
+Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: cloudflare
+CF-RAY: 6528af80c98a4be3-AMS
+
+{"status":{"timestamp":"2021-05-20T21:33:49.643Z","error_code":0,"error_message":null,"elapsed":18,"credit_count":1,"notice":null,"total_count":5239},"data":[{"id":1,"name":"Bitcoin","symbol":"BTC","slug":"bitcoin","num_market_pairs":9585,"date_added":"2013-04-28T00:00:00.000Z","tags":["mineable","pow","sha-256","store-of-value","state-channels","coinbase-ventures-portfolio","three-arrows-capital-portfolio","polychain-capital-portfolio","binance-labs-portfolio","arrington-xrp-capital","blockchain-capital-portfolio","boostvc-portfolio","cms-holdings-portfolio","dcg-portfolio","dragonfly-capital-portfolio","electric-capital-portfolio","fabric-ventures-portfolio","framework-ventures","galaxy-digital-portfolio","huobi-capital","alameda-research-portfolio","a16z-portfolio","1confirmation-portfolio","winklevoss-capital","usv-portfolio","placeholder-ventures-portfolio","pantera-capital-portfolio","multicoin-capital-portfolio","paradigm-xzy-screener"],"max_supply":21000000,"circulating_supply":18713700,"total_supply":18713700,"platform":null,"cmc_rank":1,"last_updated":"2021-05-20T21:33:02.000Z","quote":{"USD":{"price":40727.82371740013,"volume_24h":90030415964.80762,"percent_change_1h":0.6502835,"percent_change_24h":7.23292984,"percent_change_7d":-18.03752589,"percent_change_30d":-28.01978696,"percent_change_60d":-29.54225211,"percent_change_90d":-27.35733726,"market_cap":762168274700.3109,"last_updated":"2021-05-20T21:33:02.000Z"}}},{"id":1027,"name":"Ethereum","symbol":"ETH","slug":"ethereum","num_market_pairs":5931,"date_added":"2015-08-07T00:00:00.000Z"}]}

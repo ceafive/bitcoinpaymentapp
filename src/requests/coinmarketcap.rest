@@ -1,0 +1,4 @@
+GET https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=100&convert=USD 
+Content-Type: application/json
+Accept-Encoding: gzip
+X-CMC_PRO_API_KEY: da42a979-be0d-47f2-ae3e-e8174b9bd43d

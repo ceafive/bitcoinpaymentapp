@@ -11,7 +11,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md}' --config ./.prettierrc",
     "analyze": "ANALYZE=true yarn build",
-    "emulators:start": "firebase emulators:start --only auth,database,firestore,functions --import=./firebase_data --export-on-exit"
+    "emulators:start": "firebase emulators:start --only auth,database,firestore,functions,pubsub --import=./firebase_data --export-on-exit"
   },
   "dependencies": {
     "@expo-google-fonts/lato": "^0.1.0",
