@@ -39,7 +39,7 @@ const ProfileDetails = ({ user, onPressGoToPaymentMethodsScreen, onPressGoToEdit
           alignItems: "center",
           height: 200,
           // backgroundColor: theme.colors.brand.colors.onboarding1,
-          backgroundColor: theme.colors.brand.colors.brandBlueTwo,
+          backgroundColor: theme.colors.primary,
           borderRadius: 25,
         }}
       >

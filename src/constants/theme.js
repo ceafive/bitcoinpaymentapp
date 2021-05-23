@@ -20,7 +20,7 @@ export const AppLightTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    primary: tailwindConfig.theme.extend.colors.brandBlueTwo,
+    primary: tailwindConfig.theme.extend.colors.brandBlueThree,
     background: "rgb(255, 255, 255)",
     card: "rgb(255, 255, 255)",
     text: "rgb(0, 0, 0)",

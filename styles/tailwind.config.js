@@ -20,6 +20,7 @@ module.exports = {
         brandBgDark: "#05050C",
         brandBlueOne: "#1723FD",
         brandBlueTwo: "#2a2afa",
+        brandBlueThree: "#4F44FF",
       },
       margin: {},
       padding: {},

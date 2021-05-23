@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Avatar, Card, IconButton } from "react-native-paper";
 
-import { style } from "../../../../styles";
+import { style, styles } from "../../../../styles";
 import { fonts } from "../../../constants/fonts";
 import { crypoCoinsData } from "../../../utils/items";
 import ComponentSideBySide from "../../atoms/containers/ComponentSideBySide";
@@ -17,14 +17,24 @@ const CryptoInfoCard = ({ currency = "USD", marketCapData }) => {
         width: 250,
         borderRadius: 30,
         // backgroundColor: "#ACCEFF",
-        shadowColor: "#ACCEFF",
+        // shadowColor: "#ACCEFF",
+        // shadowOffset: {
+        //   width: 0,
+        //   height: 3,
+        // },
+        // shadowOpacity: 0.29,
+        // shadowRadius: 4.65,
+        // elevation: 7,
+
+        shadowColor: "#0000001C",
         shadowOffset: {
-          width: 0,
+          width: 3,
           height: 3,
         },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-        elevation: 7,
+        shadowRadius: 25,
+        shadowOpacity: 1,
+        elevation: 3,
+        backgroundColor: "eeedf5",
       }}
     >
       <ComponentSideBySide type="col" wrapperStyles={{ ...style("h-full justify-between p-4 overflow-hidden") }}>
@@ -38,32 +48,31 @@ const CryptoInfoCard = ({ currency = "USD", marketCapData }) => {
           />
           <Typography type={types.Headline} text={`${marketCapData.symbol}/${currency}`} textStyles={{ fontFamily: fonts.Lato_Black }} />
         </ComponentSideBySide>
+
         <ComponentSideBySide wrapperStyles={{ ...style("items-end justify-between") }}>
           <ComponentSideBySide type="col">
             <Typography text="Current Price" />
             <Typography
               type={types.Headline}
-              text={`${currency === "USD" ? "$" : "₵"}${Number.parseFloat(marketCapData?.quote?.USD?.price).toFixed(2)}`}
+              text={`${currency === "USD" ? "$" : "₵"}${Number(
+                Number.parseFloat(marketCapData?.quote?.USD?.price).toFixed(2)
+              ).toLocaleString()}`}
               textStyles={{ fontFamily: fonts.Lato_Bold }}
             />
           </ComponentSideBySide>
-          {Math.sign(marketCapData?.quote?.USD?.percent_change_24h) < 0 ? (
-            <ComponentSideBySide wrapperStyles={{ ...style("items-center") }}>
-              <IconButton icon="menu-down" color={"red"} size={30} />
-              <Typography
-                text={`${Number.parseFloat(marketCapData?.quote?.USD?.percent_change_24h).toFixed(0)}%`}
-                textStyles={{ fontFamily: fonts.Lato_Bold }}
-              />
-            </ComponentSideBySide>
-          ) : (
-            <ComponentSideBySide wrapperStyles={{ ...style("items-center") }}>
-              <IconButton icon="menu-up" color={"green"} size={30} onPress={() => console.log("Pressed")} />
-              <Typography
-                text={`${Number.parseFloat(marketCapData?.quote?.USD?.percent_change_24h).toFixed(0)}%`}
-                textStyles={{ fontFamily: fonts.Lato_Bold }}
-              />
-            </ComponentSideBySide>
-          )}
+
+          <ComponentSideBySide wrapperStyles={{ ...style("items-center") }}>
+            <IconButton
+              icon={`menu-${Math.sign(marketCapData?.quote?.USD?.percent_change_24h) < 0 ? "down" : "up"}`}
+              color={Math.sign(marketCapData?.quote?.USD?.percent_change_24h) < 0 ? "red" : "green"}
+              size={30}
+              style={{ width: 30, height: 30, margin: 0 }}
+            />
+            <Typography
+              text={`${Number.parseFloat(marketCapData?.quote?.USD?.percent_change_24h).toFixed(0)}%`}
+              textStyles={{ fontFamily: fonts.Lato_Black, ...style("tracking-widest") }}
+            />
+          </ComponentSideBySide>
         </ComponentSideBySide>
       </ComponentSideBySide>
     </Card>

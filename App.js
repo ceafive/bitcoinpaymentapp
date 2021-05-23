@@ -22,6 +22,7 @@ LogBox.ignoreLogs([
   "Native splash screen is already hidden",
   "TypeError: undefined is not an object (evaluating 'this._warmupSubscription')",
   "Setting a timer",
+  "interpolate",
 ]);
 
 const LoadApp = ({ children }) => {

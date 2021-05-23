@@ -9,12 +9,11 @@ const InputWithLabel = ({
   inputStyles,
   values,
   errors,
-  handleChange,
   setFieldValue,
+  handleChange,
   autoCapitalize = "none",
   theme = { roundness: 10 },
   showPassword,
-  setShowPassword,
   left,
   right,
   ...props
@@ -24,9 +23,9 @@ const InputWithLabel = ({
       <RNPTextInput
         mode="outlined"
         label={label}
-        style={[{ ...inputStyles }]}
+        style={inputStyles}
         value={values[fieldName]}
-        onChangeText={handleChange(fieldName)}
+        onChangeText={(text) => setFieldValue(fieldName, text)}
         theme={theme}
         autoCapitalize={autoCapitalize}
         secureTextEntry={fieldName === "password" && !showPassword ? true : false}

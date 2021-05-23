@@ -1,22 +1,26 @@
+import { formatDistance, subDays } from "date-fns";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Button, ToggleButton } from "react-native-paper";
 import { AuthCheck, StorageImage, useAuth, useFirestore, useFirestoreDocData, useUser } from "reactfire";
+
 import { style } from "../../styles";
 import ComponentSideBySide from "../components/atoms/containers/ComponentSideBySide";
-
 import Scroller from "../components/atoms/containers/Scroller";
 import Typography, { types } from "../components/atoms/typography/Typography";
+import WelcomeCard from "../components/molecules/cards/WelcomeCard";
 import HomeCryptoInfoCard from "../components/organisms/HomeCryptoInfoCard";
-import { useFetchUserDetails } from "../hooks";
-
-import { formatDistance, subDays } from "date-fns";
 import { fonts } from "../constants/fonts";
+import { textSizes } from "../constants/styles";
+import { useFetchUserDetails } from "../hooks";
 
 const HomeScreen = () => {
   const auth = useAuth();
   const { data: user } = useUser();
   const firestore = useFirestore();
+  const firestoreStatics = useFirestore;
+
+  const { userDetails, error, status } = useFetchUserDetails(user?.uid);
 
   const { data: coinData } = useFirestoreDocData(firestore.collection("utils").doc("coinMarketCapData"));
   const [coinMarketCapData, setCoinMarketCapData] = React.useState(coinData);
@@ -27,10 +31,11 @@ const HomeScreen = () => {
 
   const onButtonToggle = async (value) => {
     try {
-      // const { currconvData, query } = await convertCurreny(value === null ? currency : value);
-      // // const resValue = currconvData[query];
+      const { currconvData, query } = await convertCurreny(value === null ? currency : value);
+      const currconvDataValue = currconvData[query];
+
       const currentCurrency = value === null ? currency : value;
-      const resValue = currentCurrency === "USD" ? dollar : cedi;
+      const backupValue = currentCurrency === "USD" ? dollar : cedi;
 
       const newData = coinData?.latest?.map((data) => {
         return {
@@ -39,7 +44,7 @@ const HomeScreen = () => {
             ...data.quote,
             USD: {
               ...data?.quote?.USD,
-              price: data?.quote?.USD?.price * resValue,
+              price: data?.quote?.USD?.price * currconvDataValue || backupValue,
             },
           },
         };
@@ -94,7 +99,6 @@ const HomeScreen = () => {
         },
       });
       const currconvData = await res.json();
-      console.log(currconvData);
       return {
         currconvData,
         query,
@@ -105,33 +109,12 @@ const HomeScreen = () => {
   };
 
   return (
-    <Scroller wrapperStyles={{ ...style("p-5 px-2"), backgroundColor: "#fff" }}>
-      <ComponentSideBySide wrapperStyles={{ ...style("justify-between items-center") }}>
-        {/* <Typography type={types.Title} textStyles={{ fontFamily: fonts.Lato_Bold }}>
-          Top 5 coins
-        </Typography> */}
-        <Typography
-          text={`Updated ${formatDistance(new Date(coinMarketCapData?.status?.timestamp || null), new Date(), { addSuffix: true })}`}
-        />
-        <ToggleButton.Row onValueChange={(value) => onButtonToggle(value)} value={currency}>
-          <ToggleButton icon="currency-usd" value="USD" />
-          <ToggleButton
-            icon={{
-              uri: "https://thumbnail.imgbin.com/0/3/4/imgbin-ghanaian-cedi-computer-icons-symbol-saudi-riyal-Reki904UfaKNdk6jWrYCympbC_t.jpg",
-            }}
-            value="GHS"
-          />
-        </ToggleButton.Row>
-        {/* <ToggleButton icon="bluetooth" value="bluetooth" status={true} onPress={() => {}} /> */}
-      </ComponentSideBySide>
-      <Scroller wrapperStyles={{ ...style("flex-0") }} horizontal showsHorizontalScrollIndicator={false}>
-        <HomeCryptoInfoCard currency={currency} coinMarketCapData={coinMarketCapData?.latest} />
-      </Scroller>
+    <Scroller wrapperStyles={{ ...style("pb-5 px-2"), backgroundColor: "#fff" }}>
+      <WelcomeCard userDetails={userDetails} />
+      <HomeCryptoInfoCard currency={currency} coinMarketCapData={coinMarketCapData} onButtonToggle={onButtonToggle} />
       {/* <Button onPress={fetchData}>Fetch</Button> */}
     </Scroller>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 
 import BaseForm from "../molecules/forms/BaseForm";
 import VerificationForm from "../molecules/forms/VerificationForm";
@@ -20,5 +19,3 @@ const Verification = ({ initialValues, showBtn, btnText, btnStyles = {}, fieldNa
 };
 
 export default Verification;
-
-const styles = StyleSheet.create({});

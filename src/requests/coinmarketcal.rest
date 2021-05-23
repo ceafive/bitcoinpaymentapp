@@ -1,0 +1,4 @@
+GET  https://developers.coinmarketcal.com/v1/events
+Content-Type: application/json
+Accept-Encoding: deflate,gzip
+X-Api-Key: oKvc8chlHZ8BL0upuLavx4tXHsEPZdlX7M20F9L9

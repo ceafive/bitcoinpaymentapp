@@ -36,7 +36,7 @@ const EditProfileForm = ({ onPressGoToProfileDetails, ...props }) => {
           alignItems: "center",
           height: 200,
           // backgroundColor: "#0B0B0B",
-          backgroundColor: theme.colors.brand.colors.brandBlueTwo,
+          backgroundColor: theme.colors.primary,
           borderRadius: 25,
         }}
       >

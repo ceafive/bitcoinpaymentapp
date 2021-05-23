@@ -1,4 +1,5 @@
 import React from "react";
+import { IconButton, useTheme } from "react-native-paper";
 
 import { style, textSizes } from "../../../constants/styles";
 import Button from "../../atoms/buttons/Button";
@@ -7,10 +8,12 @@ import Text, { types } from "../../atoms/typography/Text";
 import Typography from "../../atoms/typography/Typography";
 
 const AddPaymentButton = ({ text, onPress }) => {
+  const theme = useTheme();
   return (
     <ComponentSideBySide wrapperStyles={style("items-center justify-between")}>
       <Typography textStyles={{ color: "#BEBEC0", ...textSizes["SMALL"] }}>{text}</Typography>
-      <Button
+      <IconButton icon="plus" color={theme.colors.primary} size={20} onPress={onPress} />
+      {/* <Button
         onPress={onPress}
         mode="text"
         compact
@@ -19,7 +22,7 @@ const AddPaymentButton = ({ text, onPress }) => {
         <Text type={types.Lato_Black} textStyles={{ color: "white", ...textSizes["REGULAR"] }}>
           +
         </Text>
-      </Button>
+      </Button> */}
 
       {/* <Button mode="text" uppercase={false} color="#BEBEC0" compact btnStyles={{ ...textSizes["4XLARGE"] }} onPress={onPress}>
           + Add

@@ -14,6 +14,7 @@
     "emulators:start": "firebase emulators:start --only auth,database,firestore,functions,pubsub --import=./firebase_data --export-on-exit"
   },
   "dependencies": {
+    "@crowdlinker/react-native-pager": "^0.2.3",
     "@expo-google-fonts/lato": "^0.1.0",
     "@expo-google-fonts/open-sans": "^0.1.0",
     "@gorhom/bottom-sheet": "^3",
@@ -23,6 +24,7 @@
     "@react-navigation/bottom-tabs": "^5.11.8",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "@twotalltotems/react-native-otp-input": "^1.3.11",
     "babel-plugin-module-resolver": "^4.1.0",
     "date-fns": "^2.21.3",
     "expo": "^41.0.0",
@@ -50,6 +52,7 @@
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
+    "react-native-svg": "12.1.0",
     "react-native-toast-message": "^1.4.9",
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.2.3",
