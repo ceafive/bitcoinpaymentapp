@@ -16,25 +16,15 @@ const CryptoInfoCard = ({ currency = "USD", marketCapData }) => {
         height: 150,
         width: 250,
         borderRadius: 30,
-        // backgroundColor: "#ACCEFF",
-        // shadowColor: "#ACCEFF",
+        // shadowColor: "#0000001C",
         // shadowOffset: {
-        //   width: 0,
+        //   width: 3,
         //   height: 3,
         // },
-        // shadowOpacity: 0.29,
-        // shadowRadius: 4.65,
-        // elevation: 7,
-
-        shadowColor: "#0000001C",
-        shadowOffset: {
-          width: 3,
-          height: 3,
-        },
-        shadowRadius: 25,
-        shadowOpacity: 1,
-        elevation: 3,
-        backgroundColor: "eeedf5",
+        // shadowRadius: 25,
+        // shadowOpacity: 1,
+        // elevation: 3,
+        // backgroundColor: "#fff",
       }}
     >
       <ComponentSideBySide type="col" wrapperStyles={{ ...style("h-full justify-between p-4 overflow-hidden") }}>

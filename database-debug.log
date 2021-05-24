@@ -1,2 +1,9 @@
 23:37:36.266 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
 23:37:36.549 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+21:05:31.858 [Thread-1] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+21:05:31.930 [NamespaceSystem-akka.actor.default-dispatcher-23] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: buybitcoinapp-default-rtdb, buybitcoinapp
+21:05:31.955 [NamespaceSystem-akka.actor.default-dispatcher-28] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for buybitcoinapp-default-rtdb
+21:05:31.955 [NamespaceSystem-akka.actor.default-dispatcher-29] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for buybitcoinapp
+21:05:31.958 [NamespaceSystem-akka.actor.default-dispatcher-29] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for buybitcoinapp
+21:05:31.958 [NamespaceSystem-akka.actor.default-dispatcher-28] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for buybitcoinapp-default-rtdb
+21:05:31.996 [Thread-1] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
