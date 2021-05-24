@@ -14,3 +14,12 @@ web-build/
 
 .firebase
 firebase_data
+database-*
+database.*
+storage-*
+storage.*
+pubsub-*
+pubsub.*
+firestore-*
+firestore.*
+ui-*
